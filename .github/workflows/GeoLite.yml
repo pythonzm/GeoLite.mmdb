@@ -43,9 +43,9 @@ jobs:
     steps:
     - name: Download GeoLite.mmdb
       run: |
-        wget --content-disposition --user=${{ secrets.ACCOUNT_ID }} --password=${{ secrets.LICENSE_KEY }} 'https://download.maxmind.com/geoip/databases/GeoLite2-ASN/download?suffix=tar.gz' | tar zxv
-        wget --content-disposition --user=${{ secrets.ACCOUNT_ID }} --password=${{ secrets.LICENSE_KEY }} 'https://download.maxmind.com/geoip/databases/GeoLite2-City/download?suffix=tar.gz' | tar zxv
-        wget --content-disposition --user=${{ secrets.ACCOUNT_ID }} --password=${{ secrets.LICENSE_KEY }} 'https://download.maxmind.com/geoip/databases/GeoLite2-Country/download?suffix=tar.gz' | tar zxv
+        wget -nv -O- --user=${{ secrets.ACCOUNT_ID }} --password=${{ secrets.LICENSE_KEY }} 'https://download.maxmind.com/geoip/databases/GeoLite2-ASN/download?suffix=tar.gz' | tar zxv
+        wget -nv -O- --user=${{ secrets.ACCOUNT_ID }} --password=${{ secrets.LICENSE_KEY }} 'https://download.maxmind.com/geoip/databases/GeoLite2-City/download?suffix=tar.gz' | tar zxv
+        wget -nv -O- --user=${{ secrets.ACCOUNT_ID }} --password=${{ secrets.LICENSE_KEY }} 'https://download.maxmind.com/geoip/databases/GeoLite2-Country/download?suffix=tar.gz' | tar zxv
         mkdir -p upload
         cp -v GeoLite*/*.mmdb upload
         echo "TAG_NAME=$(date +"%Y.%m.%d")" >> $GITHUB_ENV
